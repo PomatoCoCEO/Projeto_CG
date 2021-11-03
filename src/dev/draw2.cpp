@@ -12,146 +12,55 @@
 #include <ctype.h>
 #include <iostream>
 #include <bits/stdc++.h>
-#include "../lib/keyboard.h"
+#include "../lib/keyboard/keyboard.h"
 using namespace std;
-#define reveal(a) cout << #a "=" << a << endl;
-
-//--------------------------------- Definir cores
-#define BLUE 0.0, 0.0, 1.0, 1.0
-#define RED 1.0, 0.0, 0.0, 1.0
-#define YELLOW 1.0, 1.0, 0.0, 1.0
-#define GREEN 0.0, 1.0, 0.0, 1.0
-#define WHITE 1.0, 1.0, 1.0, 1.0
-#define BLACK 0.0, 0.0, 0.0, 1.0
-#define PI 3.14159
-
-//================================================================================
-//===========================================================Variaveis e constantes
-
-GLfloat tam = 0.5;
-GLdouble xTable = 0.0, yTable = 0.0, xCam = 4, yCam = 10, zCam = 30;
-GLboolean up = false;
-int deg = 0;
-GLdouble deltaAng = 5.0;
-/*static*/ vector<GLfloat> vertices = {
-    //�������������������������������������� x=tam (Esquerda)
-    -tam, -tam, tam,  // 0
-    -tam, tam, tam,   // 1
-    -tam, tam, -tam,  // 2
-    -tam, -tam, -tam, // 3
-                      //�������������������� Direita
-    tam, -tam, tam,   // 4
-    tam, tam, tam,    // 5
-    tam, tam, -tam,   // 6
-    tam, -tam, -tam,  // 7
-                      //��������������������� (Cima
-    -tam, tam, tam,   // 8
-    -tam, tam, -tam,  // 9
-    tam, tam, -tam,   // 10
-    tam, tam, tam,    // 11
-};
-/*
-static GLfloat normais[] = {
-    //�������������������������������������� x=tam (Esquerda)
-    -1.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    //�������������������������������������� x=tam (Direita)
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    //�������������������������������������� y=tam (Cima)
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-};*/
-//------------------------------------------------------------ Cores
-static GLfloat cor[] = {
-    0.5, 0.0, 1.0, 0.5, 0.0, 1.0,
-    0, 1, 1, 0, 1, 1,
-    0, 1, 0, 0, 1, 0,
-    0, 1, 1, 0, 1, 1,
-    1, 0, 0, 1, 0, 0,
-    1, 1, 0, 1, 1, 0};
-// nao est� feito !!
-// falta fazer
-
-//=========================================================== FACES DA MESA
-GLint frenteVisivel = 1;
-vector<GLuint> cima = {8, 11, 10, 9};    // regra da mao direita
-static GLuint direita[] = {4, 5, 6, 7};  //++++++++++++ falta a esquerda
-static GLuint esquerda[] = {0, 1, 2, 3}; //++++++++++++ falta a direita
-
-//------------------------------------------------------------ Objectos (sistema coordenadas)
-GLint wScreen = 800, hScreen = 600;      //.. janela (pixeis)
-GLfloat xC = 10.0, yC = 10.0, zC = 10.0; //.. Mundo  (unidades mundo)
-
-//------------------------------------------------------------ Visualizacao/Observador
-GLfloat rVisao = 10, aVisao = 90, incVisao = 0.05;
-GLfloat obsP[] = {rVisao * cos(aVisao), 3.0, rVisao *sin(aVisao)};
-GLfloat angZoom = 45;
-GLfloat incZoom = 3;
-
+int wScreen = 800, hScreen = 600;
+int angZoom = 45;
+GLdouble xCam = 4, yCam = 10, zCam = 30;
+Keyboard k;
+Cuboid cu;
 //================================================================================
 //=========================================================================== INIT
+/*
+vector<GLdouble> cuVertices = {
+    0, 0, 0};*/
+vector<GLdouble> cuVertices, cuColours;
+vector<GLuint> vec = {0, 1, 3, 2};
+int xPos, yPos;
+
 void inicializa(void)
 {
-    glClearColor(BLACK);     //������������������������������Apagar
-    glEnable(GL_DEPTH_TEST); //������������������������������Profundidade
-    glShadeModel(GL_SMOOTH); //������������������������������Interpolacao de cores
+    glClearColor(0, 0, 0, 1); //������������������������������Apagar
+    glEnable(GL_DEPTH_TEST);  //������������������������������Profundidade
+    glShadeModel(GL_SMOOTH);  //������������������������������Interpolacao de cores
 
-    glVertexPointer(3, GL_FLOAT, 0, &vertices[0]); //���������������VertexArrays: vertices + normais + cores
     glEnableClientState(GL_VERTEX_ARRAY);
+    // glVertexPointer(3, GL_FLOAT, 0, &(k.pts[0])); //���������������VertexArrays: vertices + normais + cores
     // glNormalPointer(GL_FLOAT, 0, normais);
     // glEnableClientState(GL_NORMAL_ARRAY);
     //++++++++++++++++++++++++ cores ??
     glEnableClientState(GL_COLOR_ARRAY);
-    glColorPointer(3, GL_FLOAT, 0, cor);
+    // startCuboid();
+    // drawCuboid();
+    // glColorPointer(3, GL_FLOAT, 0, &(k.colours[0]));
 }
 
 void drawEixos()
 {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Eixo X
-    glColor4f(RED);
+    glColor4f(1, 0, 0, 1);
     glBegin(GL_LINES);
     glVertex3i(0, 0, 0);
     glVertex3i(10, 0, 0);
     glEnd();
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Eixo Y
-    glColor4f(GREEN);
+    glColor4f(0, 1, 0, 1);
     glBegin(GL_LINES);
     glVertex3i(0, 0, 0);
     glVertex3i(0, 10, 0);
     glEnd();
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Eixo Z
-    glColor4f(BLUE);
+    glColor4f(0, 0, 1, 1);
     glBegin(GL_LINES);
     glVertex3i(0, 0, 0);
     glVertex3i(0, 0, 10);
@@ -160,45 +69,7 @@ void drawEixos()
 
 void drawScene()
 {
-
-    //=================================================== Qual o lado visivel ???
-    /*switch (frenteVisivel)
-    {
-     case 0:
-         glDisable(GL_CULL_FACE);
-         break;
-     case 1:
-         glEnable(GL_CULL_FACE);
-         glCullFace(GL_BACK);
-         break;
-     default:
-         glEnable(GL_CULL_FACE);
-         glCullFace(GL_FRONT);
-     }*/
-    //++++++++++++++++++++   falta fazer
-
-    //==================================== MESA
-    //++++++++++++++++++   ?? escala, rotacao, translacao ??
-    Keyboard k = Keyboard();
-    // glPushMatrix();
-    // glScalef(-1, 1, 1);
     k.draw();
-    //  glPopMatrix();
-    /*glTranslatef(xTable, yTable, 0);
-    glRotatef(deg, 0, 1, 0);
-    glPushMatrix();
-    glScalef(2, 2, 2);
-    glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, &cima[0]); // desenhar uma das faces da mesa
-    glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, direita);  //+++++++++++++++++ face esquerda
-    glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, esquerda); //+++++++++++++++++ face direita
-    glPopMatrix();
-
-    //==================================== Chaleira Amarela
-    glColor4f(YELLOW);
-    glPushMatrix();
-    //+++++++++++++++++++++ escala, rotacao, translacao ??
-    glutWireTeapot(1);
-    glPopMatrix();*/
 }
 
 void display(void)
@@ -214,7 +85,7 @@ void display(void)
     gluPerspective(angZoom, (float)wScreen / hScreen, 0.1, 100);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/ xCam, yCam, zCam, 5, 2, 10, 0, 1, 0);
+    gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/ xCam, yCam, zCam, 10, 5, 2, 0, 1, 0);
     //================================================================= N�o modificar !!!!!!!!!!!!
 
     //����������������������������������������������������������Objectos
@@ -225,46 +96,29 @@ void display(void)
     glutSwapBuffers();
 }
 
+void press_key(int pos_key)
+{
+    cout << "Key pressed: " << pos_key << endl;
+    k.keys[pos_key].velZ = -0.02; // press down
+}
+
 //======================================================= EVENTOS
 void keyboard(unsigned char key, int x, int y)
 {
-
     switch (toupper(key))
     {
-    //++++++++++++++++++++++++++++  TECLAS
-    //  F		lado da frente ou de tras visivel
-    case 'F':
-        frenteVisivel = (frenteVisivel + 1) % 3;
-        reveal(frenteVisivel) break;
-    case 'A':
-        xTable += 0.1;
-        reveal(xTable) break;
-    case 'S':
-        xTable -= 0.1;
-        reveal(xTable) break;
-        //  A/S		movimeto eixo x
-        //	E/D		rodar esquerda/direita
-        //	R		rar continuamente
-        //++++++++++++++++++++++++++++  TECLAS
-    case 'R':
-        deg = (deg + 5) % 360;
-        if (up)
-        {
-            yTable += 0.1;
-        }
-        else
-        {
-            yTable -= 0.1;
-        }
-        if (yTable >= 10.0)
-            up = false;
-        if (yTable <= 0)
-            up = true;
+    case 'W':
+        press_key(0);
         break;
-        //++++++++++++++++++++++++++++
-        // E possivel inventar outra coisa qualquer !!!
-
-        //--------------------------- Escape
+    case 'A':
+        press_key(1);
+        break;
+    case 'S':
+        press_key(2);
+        break;
+    case 'D':
+        press_key(3);
+        break;
     case 27:
         exit(0);
         break;
@@ -295,8 +149,34 @@ void teclasNotAscii(int key, int x, int y)
         // deg = (int)(deg - deltaAng) % 360;
         xCam += 0.1;
     }
+    if (key == GLUT_KEY_F1)
+    {
+        yCam -= 0.1;
+    }
+    if (key == GLUT_KEY_F2)
+    {
+        yCam += 0.1;
+    }
     cout << "(x,y,z) = (" << xCam << "," << yCam << "," << zCam << ")\n";
     glutPostRedisplay();
+}
+
+void animate_keyboard(int time)
+{
+    // handle key pressing
+    for (int i = 0; i < k.keys.size(); i++)
+    {
+        k.keys[i].deltaZ += k.keys[i].velZ;
+        if (k.keys[i].deltaZ < -0.4 && k.keys[i].velZ < 0)
+            k.keys[i].velZ = -k.keys[i].velZ;
+        if (k.keys[i].deltaZ > 0 && k.keys[i].velZ > 0)
+            k.keys[i].deltaZ = k.keys[i].velZ = 0;
+    }
+    k.mouse_wheel.velX -= 0.005 * k.mouse_wheel.velX;
+    k.mouse_wheel.velY -= 0.005 * k.mouse_wheel.velY;
+    glutPostRedisplay();
+    cout << "Animating...\n";
+    glutTimerFunc(16, animate_keyboard, 0);
 }
 
 //======================================================= MAIN
@@ -310,12 +190,17 @@ int main(int argc, char **argv)
     glutInitWindowPosition(300, 100);
     glutCreateWindow("{jh,avperrotta@dei.uc.pt|    |Mover/rodar Cima:'r'|   |FaceVisivel:'f'|      |Observador:'SETAS'|        |Andar-'a/s'|        |Rodar -'e/d'| ");
 
-    inicializa();
+    k = Keyboard();
 
+    // cout << "Point length: " << k.pts.size() << "; colour length: " << k.colours.size() << endl;
+    inicializa();
+    // cu = Cuboid(point3d(0, 0, 0), 1, 1, 1, GREY);
+    // cu.draw();
+    // glutSwapBuffers();
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
-
+    glutTimerFunc(16, animate_keyboard, 0);
     glutMainLoop();
 
     return 0;

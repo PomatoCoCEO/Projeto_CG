@@ -18,7 +18,10 @@ public:
 
 class Cuboid : public Solid
 {
+
 public:
+    vector<GLdouble> points;
+    vector<GLdouble> colors;
     Cuboid() {}
     Cuboid(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour)
     {
@@ -52,6 +55,17 @@ public:
         faces.emplace_back(pol, colour);
         pol = {pts[2], pts[3], pts[7], pts[6]};
         faces.emplace_back(pol, colour);
+        for (auto f : faces)
+        {
+            for (auto p : f.points)
+                points.push_back(p.x), points.push_back(p.y), points.push_back(p.z);
+            for (auto c : f.colours)
+                colors.push_back(c.r), colors.push_back(c.g), colors.push_back(c.b), colors.push_back(c.a);
+        }
+        glVertexPointer(3, GL_DOUBLE, 0, &points[0]);
+        glColorPointer(4, GL_DOUBLE, 0, &colors[0]);
+
+        cout << "Point length: " << points.size() << "; colour length: " << colors.size() << endl;
     }
 
     void addFunction(func_code code, vector<GLfloat> args)
@@ -60,6 +74,15 @@ public:
         transform.push_back(g);*/
         for (auto &f : faces)
             f.addFunction(code, args);
+    }
+
+    void draw()
+    {
+        for (GLuint i = 0; i < 24; i += 4) // base
+        {
+            vector<GLuint> vec = {i, i + 1, i + 2, i + 3};
+            glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, &vec[0]);
+        }
     }
 };
 

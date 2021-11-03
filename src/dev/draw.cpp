@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <iostream>
 #include <bits/stdc++.h>
-#include "../lib/keyboard.h"
+#include "../lib/keyboard/keyboard.h"
 GLdouble inc = 0.5;
 int wScreen = 800, hScreen = 600;
 GLdouble xCam = 10, yCam = 5, zCam = 10;

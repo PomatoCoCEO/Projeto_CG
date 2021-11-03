@@ -1,10 +1,10 @@
 #ifndef COLOUR_H
 #define COLOUR_H
 #include <GL/glut.h>
-
+#define min(a, b) ((a) < (b) ? (a) : (b))
 struct colour4
 {
-    GLfloat r, g, b, a;
+    GLdouble r, g, b, a;
     colour4(GLfloat r, GLfloat g, GLfloat b, GLfloat a) : r(r), g(g), b(b), a(a) {}
 };
 
@@ -15,13 +15,13 @@ struct colour3 : public colour4
 
 colour4 light(colour4 c)
 {
-    GLfloat r = (1.0 - c.r) / 2, g = (1.0 - c.g) / 2, b = (1.0 - c.b) / 2;
+    GLdouble r = min(1.5 * c.r, 1), g = min(1.5 * c.g, 1), b = min(1.5 * c.b, 1);
     return colour4(r, g, b, c.a);
 }
 
 colour4 dark(colour4 c)
 {
-    GLfloat r = c.r / 2, g = c.g / 2, b = c.b / 2;
+    GLdouble r = c.r / 2, g = c.g / 2, b = c.b / 2;
     return colour4(r, g, b, c.a);
 }
 

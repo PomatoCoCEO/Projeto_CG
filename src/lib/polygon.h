@@ -42,17 +42,17 @@ struct Polygon
 
     Polygon(vector<point3d> &points, vector<colour4> &colours) : points(points), colours(colours)
     {
-        draw();
+        // draw();
     }
 
     Polygon(vector<point3d> &points, colour4 colour) : points(points), colours(points.size(), colour)
     {
-        draw();
+        // draw();
     }
 
     Polygon(vector<point3d> &points) : points(points), colours(points.size(), {1, 1, 1, 1})
     {
-        draw();
+        // draw();
     }
     Polygon() {}
 };
