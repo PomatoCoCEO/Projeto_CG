@@ -54,12 +54,12 @@ public:
 
     Keyboard()
     {
-        base = Cuboid(point3d(0.0, 0.0, 0.0), 20.0, 10.0, 2.0, GREY);
-        keys.emplace_back(point3d(2, 6, 1.5), 3, 3, 1, YELLOW); // W
-        keys.emplace_back(point3d(1, 2, 1.5), 3, 3, 1, RED);    // A
-        keys.emplace_back(point3d(5, 2, 1.5), 3, 3, 1, GREEN);  // S
-        keys.emplace_back(point3d(9, 2, 1.5), 3, 3, 1, BLUE);   // D
-        mouse_wheel = MouseCube(point3d(14, 2, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, MAGENTA);
+        base = Cuboid(point3d(0.0, 0.0, 0.0), 20.0, 10.0, 2.0, dark(GREY));
+        keys.emplace_back(point3d(2, 6, 1.5), 3, 3, 1, dark(YELLOW)); // W
+        keys.emplace_back(point3d(1, 2, 1.5), 3, 3, 1, dark(RED));    // A
+        keys.emplace_back(point3d(5, 2, 1.5), 3, 3, 1, dark(GREEN));  // S
+        keys.emplace_back(point3d(9, 2, 1.5), 3, 3, 1, dark(BLUE));   // D
+        mouse_wheel = MouseCube(point3d(14, 2, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, dark(MAGENTA));
         setup_draw();
     }
 
@@ -99,7 +99,7 @@ public:
         glRotatef(mouse_wheel.angX, 1, 0, 0);
         glRotatef(mouse_wheel.angY, 0, 1, 0);
         glTranslatef(-(p1.x + p2.x) / 2, -(p1.y + p2.y) / 2, -(p1.z + p2.z) / 2);
-        for (GLuint i = 24 * (1 + keys.size()) /*pts.size() - 24*/; i < pts.size(); i += 4)
+        for (GLuint i = 24 * (1 + keys.size()) /*pts.size() - 24*/; i < 24 * (2 + keys.size()); i += 4)
         {
             vector<GLuint> vec = {i, i + 1, i + 2, i + 3};
             glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, &vec[0]);
