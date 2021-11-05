@@ -62,8 +62,8 @@ public:
             for (auto c : f.colours)
                 colors.push_back(c.r), colors.push_back(c.g), colors.push_back(c.b), colors.push_back(c.a);
         }
-        glVertexPointer(3, GL_DOUBLE, 0, &points[0]);
-        glColorPointer(4, GL_DOUBLE, 0, &colors[0]);
+        // glVertexPointer(3, GL_DOUBLE, 0, &points[0]);
+        // glColorPointer(4, GL_DOUBLE, 0, &colors[0]);
 
         cout << "Point length: " << points.size() << "; colour length: " << colors.size() << endl;
     }
@@ -75,7 +75,7 @@ public:
         for (auto &f : faces)
             f.addFunction(code, args);
     }
-
+    /*
     void draw()
     {
         for (GLuint i = 0; i < 24; i += 4) // base
@@ -83,7 +83,7 @@ public:
             vector<GLuint> vec = {i, i + 1, i + 2, i + 3};
             glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, &vec[0]);
         }
-    }
+    }*/
 };
 
 #endif

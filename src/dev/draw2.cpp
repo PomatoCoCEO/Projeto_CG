@@ -18,7 +18,7 @@ using namespace std;
 int wScreen = 1200, hScreen = 900;
 int angZoom = 45;
 GLdouble xCam = 4, yCam = 10, zCam = 30;
-GLdouble xFocus = 10, yFocus = 5, zFocus = 2, zoomRad = 20, verAng = 45, horAng = 45;
+GLdouble xFocus = 10, yFocus = 5, zFocus = 2, zoomRad = 20, verAng = 45, horAng = 45, zoomRatio = 0.02;
 int zoomX = 0, zoomY = 0;
 Keyboard k;
 Cuboid cu;
@@ -106,7 +106,10 @@ void display(void)
 void press_key(int pos_key)
 {
     cout << "Key pressed: " << pos_key << endl;
-    k.keys[pos_key].velZ = -0.02; // press down
+    if (k.keys[pos_key].deltaZ > -0.4)
+        k.keys[pos_key].velZ = -0.02; // press down
+    else
+        k.keys[pos_key].velZ = 0.02;
 }
 
 //======================================================= EVENTOS
@@ -181,14 +184,20 @@ void zoom_wheel(int button, int state, int x, int y)
     switch (button)
     {
     case 3:
-        zoomRad -= 0.02 * zoomRad;
+        zoomRad -= zoomRatio * zoomRad;
         break;
     case 4:
-        zoomRad += 0.02 * zoomRad;
+        zoomRad += zoomRatio * zoomRad;
         break;
+    case 7:
+        zoomRatio *= 1.5;
+        break;
+    case 8:
+        zoomRatio /= 1.5;
     default:
         break;
     }
+    cout << "zoomRatio = " << zoomRatio << "\n";
 }
 
 void adjust_angle(int x, int y)
@@ -216,15 +225,19 @@ void animate_keyboard(int time)
         if (k.keys[i].deltaZ > 0 && k.keys[i].velZ > 0)
             k.keys[i].deltaZ = k.keys[i].velZ = 0;
     }
-    k.mouse_wheel.angX -= k.mouse_wheel.velY;
-    k.mouse_wheel.angY += k.mouse_wheel.velX;
-    GLdouble drag = 0.02;
-    k.mouse_wheel.velX -= drag * k.mouse_wheel.velX;
-    k.mouse_wheel.velY -= drag * k.mouse_wheel.velY;
+    for (auto &c : k.mouse_wheel)
+    {
+        c.angX += c.velY;
+        c.angY -= c.velX;
+        GLdouble drag = 0.02;
+        c.velX -= drag * c.velX;
+        c.velY -= drag * c.velY;
+    }
+
     glutPostRedisplay();
     // cout << "Animating...\n";
     glutTimerFunc(16, animate_keyboard, 0);
-}
+} // 60 FPS !!!
 
 void mouse_move(int x, int y)
 {
@@ -233,8 +246,8 @@ void mouse_move(int x, int y)
     xPos = x, yPos = y;
     if (abs(deltaX) < 100 && abs(deltaY) < 100)
     {
-        k.mouse_wheel.velX += deltaX * 0.05;
-        k.mouse_wheel.velY += deltaY * 0.05;
+        k.mouse_wheel[1].velY += deltaX * 0.05;
+        k.mouse_wheel[0].velX += deltaY * 0.05;
     }
 }
 
@@ -247,7 +260,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(wScreen, hScreen);
     glutInitWindowPosition(300, 100);
-    glutCreateWindow("{jh,avperrotta@dei.uc.pt|    |Mover/rodar Cima:'r'|   |FaceVisivel:'f'|      |Observador:'SETAS'|        |Andar-'a/s'|        |Rodar -'e/d'| ");
+    glutCreateWindow("Teclado Gaming: WASD");
 
     k = Keyboard();
 

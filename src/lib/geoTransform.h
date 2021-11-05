@@ -33,6 +33,7 @@ struct GeoTransform
         case SCALE:
             glScalef(args[0], args[1], args[2]);
             return;
+        default:
             throw "INVALID CODE";
         }
         // we can continue from here to fill this...
