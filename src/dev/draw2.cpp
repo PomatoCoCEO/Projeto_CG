@@ -80,6 +80,15 @@ void drawScene()
     k.draw();
 }
 
+void drawPlayer()
+{
+    glPushMatrix();
+    glTranslatef(player.pos.x, player.pos.y, player.pos.z);
+    glColor3f(1, 1, 0);
+    glutWireSphere(1, 10, 10);
+    glPopMatrix();
+}
+
 void display(void)
 {
 
@@ -102,7 +111,7 @@ void display(void)
     else
     {
         point3d p = player.pos;
-        cout << p.x << " " << p.y << " " << p.z << endl;
+        // cout << p.x << " " << p.y << " " << p.z << endl;
         point3d dir(p.x + cos(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)),
                     p.y + cos(DEG_TO_RAD(player.angHeightView)),
                     p.z + sin(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)));
@@ -111,13 +120,14 @@ void display(void)
                   p.y,
                   p.z,
                   dir.x, dir.y, dir.z, 0, 1, 0);
-        printf("(%lf,%lf,%lf) looking at (%lf, %lf, %lf)\n", p.x, p.y, p.z, dir.x, dir.y, dir.z);
+        // printf("(%lf,%lf,%lf) looking at (%lf, %lf, %lf)\n", p.x, p.y, p.z, dir.x, dir.y, dir.z);
     }
     //================================================================= N�o modificar !!!!!!!!!!!!
 
     //����������������������������������������������������������Objectos
     drawEixos();
     drawScene();
+    drawPlayer();
 
     //. . . . . . . . . . . . . . . . . . . . .  Actualizacao
     glutSwapBuffers();
@@ -139,23 +149,23 @@ void keyboardUp(unsigned char key, int x, int y)
     {
     case 'W':
         k.keys[0].pressed = false;
-        if (mode)
-            player.mov -= point3d(1, 0, 0); // move_front();
+        // if (mode)
+        player.mov -= point3d(1, 0, 0); // move_front();
         break;
     case 'A':
         k.keys[1].pressed = false;
-        if (mode)
-            player.mov -= point3d(0, 0, -1);
+        // if (mode)
+        player.mov -= point3d(0, 0, -1);
         break;
     case 'S':
         k.keys[2].pressed = false;
-        if (mode)
-            player.mov -= point3d(-1, 0, 0);
+        // if (mode)
+        player.mov -= point3d(-1, 0, 0);
         break;
     case 'D':
         k.keys[3].pressed = false;
-        if (mode)
-            player.mov -= point3d(0, 0, 1);
+        // if (mode)
+        player.mov -= point3d(0, 0, 1);
         break;
     case ' ':
         k.keys[4].pressed = false;
@@ -171,31 +181,31 @@ void keyboard(unsigned char key, int x, int y)
     {
     case 'W':
         press_key(0);
-        if (mode)
-            player.mov += point3d(1, 0, 0); // move_front();
+        // if (mode)
+        player.mov += point3d(1, 0, 0); // move_front();
         break;
     case 'A':
         press_key(1);
-        if (mode)
-            player.mov += point3d(0, 0, -1);
+        // if (mode)
+        player.mov += point3d(0, 0, -1);
         break;
     case 'S':
         press_key(2);
-        if (mode)
-            player.mov += point3d(-1, 0, 0);
+        // if (mode)
+        player.mov += point3d(-1, 0, 0);
         break;
     case 'D':
         press_key(3);
-        if (mode)
-            player.mov += point3d(0, 0, 1);
+        // if (mode)
+        player.mov += point3d(0, 0, 1);
         break;
     case 'P':
         mode = 1 - mode;
         break;
     case ' ':
         press_key(4);
-        if (mode)
-            player.jump();
+        // if (mode)
+        player.jump();
         break;
     case '+':
         verAng += 2.0;
@@ -303,6 +313,8 @@ void animate_keyboard(int time)
         {
             if (k.keys[i].deltaZ < -0.4)
                 k.keys[i].velZ = 0;
+            if (k.keys[i].letter == ' ')
+                player.jump();
         }
         else
         {
@@ -324,8 +336,8 @@ void animate_keyboard(int time)
         c.velX -= drag * c.velX;
         c.velY -= drag * c.velY;
     }
-    if (mode)
-        player.move();
+    // if (mode)
+    player.move();
 
     glutPostRedisplay();
     // cout << "Animating...\n";

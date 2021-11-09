@@ -29,7 +29,7 @@ public:
 
     void move()
     {
-        cout << "mov=" << mov << endl;
+        // cout << "mov=" << mov << endl;
         if (mov.norm() != 0)
         {
             auto m = mov.normalized();
@@ -68,7 +68,7 @@ public:
     {
         if (pos.y <= 1)
         {
-            pos.y = 1.001;
+            pos.y = 1.0001;
             velVert = 1.5;
         }
     }
