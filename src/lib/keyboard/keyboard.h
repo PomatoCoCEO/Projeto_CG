@@ -56,17 +56,18 @@ public:
 
     Keyboard()
     {
-        base.push_back(Cuboid(point3d(0.0, 0.0, 0.0), 28.0, 10.0, 2.0, dark(GREY)));
-        base.emplace_back(point3d(15.5, 3.5, 1), 1, 1, 4, GREY);
-        base.emplace_back(point3d(25.5, 3.5, 1), 1, 1, 4, GREY);
-        base.emplace_back(point3d(21.5, 3.5, 5), 5, 1, 1, GREY);
+        base.push_back(Cuboid(point3d(0.0, 0.0, 0.0), 28.0, 15.0, 2.0, dark(GREY)));
+        base.emplace_back(point3d(15.5, 8.5, 1), 1, 1, 4, GREY);
+        base.emplace_back(point3d(25.5, 8.5, 1), 1, 1, 4, GREY);
+        base.emplace_back(point3d(21.5, 8.5, 5), 5, 1, 1, GREY);
 
-        keys.emplace_back(point3d(2, 6, 1.5), 3, 3, 1, dark(YELLOW), 'W'); // W
-        keys.emplace_back(point3d(1, 2, 1.5), 3, 3, 1, dark(RED), 'A');    // A
-        keys.emplace_back(point3d(5, 2, 1.5), 3, 3, 1, dark(GREEN), 'S');  // S
-        keys.emplace_back(point3d(9, 2, 1.5), 3, 3, 1, dark(BLUE), 'D');   // D
-        mouse_wheel.push_back(MouseCube(point3d(20, 2, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, dark(MAGENTA)));
-        mouse_wheel.push_back(MouseCube(point3d(14, 2, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, dark(MAGENTA)));
+        keys.emplace_back(point3d(2, 11, 1.5), 3, 3, 1, dark(YELLOW), 'W'); // W
+        keys.emplace_back(point3d(1, 7, 1.5), 3, 3, 1, dark(RED), 'A');     // A
+        keys.emplace_back(point3d(5, 7, 1.5), 3, 3, 1, dark(GREEN), 'S');   // S
+        keys.emplace_back(point3d(9, 7, 1.5), 3, 3, 1, dark(BLUE), 'D');    // D
+        keys.emplace_back(point3d(2, 2, 1.5), 11, 3, 1, dark(ORANGE), ' ');
+        mouse_wheel.push_back(MouseCube(point3d(20, 7, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, dark(CYAN)));
+        mouse_wheel.push_back(MouseCube(point3d(14, 7, 2 * sqrt(3.0f)), 4.0, 4.0, 4.0, dark(MAGENTA)));
 
         setup_draw();
     }

@@ -34,5 +34,5 @@ const colour4 MAGENTA = colour4(1, 0, 1, 1);
 const colour4 CYAN = colour4(0, 1, 1, 1);
 const colour4 YELLOW = colour4(1, 1, 0, 1);
 const colour4 GREY = colour4(0.5, 0.5, 0.5, 1);
-
+const colour4 ORANGE = colour4(1, 0.5, 0, 1);
 #endif

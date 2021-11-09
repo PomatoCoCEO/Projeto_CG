@@ -26,6 +26,7 @@ int mode = 0;
 int zoomX = 0, zoomY = 0;
 Keyboard k;
 Cuboid cu;
+GLdouble key_speed = -0.02;
 //================================================================================
 //=========================================================================== INIT
 /*
@@ -101,9 +102,10 @@ void display(void)
     else
     {
         point3d p = player.pos;
-        point3d dir(p.x + cos(DEG_TO_RAD(player.angHor)) * sin(DEG_TO_RAD(player.angHeight)),
-                    p.y + cos(DEG_TO_RAD(player.angHeight)),
-                    p.z + sin(DEG_TO_RAD(player.angHor)) * sin(DEG_TO_RAD(player.angHeight)));
+        cout << p.x << " " << p.y << " " << p.z << endl;
+        point3d dir(p.x + cos(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)),
+                    p.y + cos(DEG_TO_RAD(player.angHeightView)),
+                    p.z + sin(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)));
         gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/
                   p.x,
                   p.y,
@@ -124,10 +126,42 @@ void display(void)
 void press_key(int pos_key)
 {
     cout << "Key pressed: " << pos_key << endl;
+    k.keys[pos_key].pressed = true;
     if (k.keys[pos_key].deltaZ > -0.4)
-        k.keys[pos_key].velZ = -0.02; // press down
-    else
-        k.keys[pos_key].velZ = 0.02;
+        k.keys[pos_key].velZ = key_speed; // press down
+    // else
+    //    k.keys[pos_key].velZ = 0.02;
+}
+
+void keyboardUp(unsigned char key, int x, int y)
+{
+    switch (toupper(key))
+    {
+    case 'W':
+        k.keys[0].pressed = false;
+        if (mode)
+            player.mov -= point3d(1, 0, 0); // move_front();
+        break;
+    case 'A':
+        k.keys[1].pressed = false;
+        if (mode)
+            player.mov -= point3d(0, 0, -1);
+        break;
+    case 'S':
+        k.keys[2].pressed = false;
+        if (mode)
+            player.mov -= point3d(-1, 0, 0);
+        break;
+    case 'D':
+        k.keys[3].pressed = false;
+        if (mode)
+            player.mov -= point3d(0, 0, 1);
+        break;
+    case ' ':
+        k.keys[4].pressed = false;
+    default:
+        break;
+    }
 }
 
 //======================================================= EVENTOS
@@ -138,22 +172,22 @@ void keyboard(unsigned char key, int x, int y)
     case 'W':
         press_key(0);
         if (mode)
-            player.move_front();
+            player.mov += point3d(1, 0, 0); // move_front();
         break;
     case 'A':
         press_key(1);
         if (mode)
-            player.move_left();
+            player.mov += point3d(0, 0, -1);
         break;
     case 'S':
         press_key(2);
         if (mode)
-            player.move_back();
+            player.mov += point3d(-1, 0, 0);
         break;
     case 'D':
         press_key(3);
         if (mode)
-            player.move_right();
+            player.mov += point3d(0, 0, 1);
         break;
     case 'P':
         mode = 1 - mode;
@@ -262,10 +296,25 @@ void animate_keyboard(int time)
     for (int i = 0; i < k.keys.size(); i++)
     {
         k.keys[i].deltaZ += k.keys[i].velZ;
-        if (k.keys[i].deltaZ < -0.4 && k.keys[i].velZ < 0)
-            k.keys[i].velZ = -k.keys[i].velZ;
-        if (k.keys[i].deltaZ > 0 && k.keys[i].velZ > 0)
-            k.keys[i].deltaZ = k.keys[i].velZ = 0;
+        // cout << "VelZ: " << k.keys[i].velZ << "; DeltaZ:" << k.keys[i].deltaZ << endl;
+        /*if (k.keys[i].deltaZ < -0.4 && k.keys[i].velZ < 0)
+            k.keys[i].velZ = -k.keys[i].velZ;*/
+        if (k.keys[i].pressed)
+        {
+            if (k.keys[i].deltaZ < -0.4)
+                k.keys[i].velZ = 0;
+        }
+        else
+        {
+            // cout << "Key" << k.keys[i].letter << "not pressed" << endl;
+            if (k.keys[i].deltaZ <= -0.399)
+                k.keys[i].velZ = -key_speed;
+            else
+            {
+                if (k.keys[i].deltaZ > 0.001)
+                    k.keys[i].deltaZ = k.keys[i].velZ = 0;
+            }
+        }
     }
     for (auto &c : k.mouse_wheel)
     {
@@ -276,7 +325,7 @@ void animate_keyboard(int time)
         c.velY -= drag * c.velY;
     }
     if (mode)
-        player.move_vert();
+        player.move();
 
     glutPostRedisplay();
     // cout << "Animating...\n";
@@ -293,21 +342,21 @@ void mouse_move(int x, int y)
         k.mouse_wheel[1].velY -= deltaX * 0.05;
         k.mouse_wheel[0].velX -= deltaY * 0.05;
     }
-    cout << "MODE=" << mode << endl;
+    // cout << "MODE=" << mode << endl;
     if (mode)
     {
         // deltaX = zoomX - x;
         // deltaY = zoomY - y;
-        player.angHor += deltaX;
-        double final = player.angHeight + deltaY;
+        player.angHorView += deltaX / 5.0;
+        double final = player.angHeightView + deltaY / 5.0;
         if (final > 0 && final < 180)
         {
-            player.angHeight = final;
+            player.angHeightView = final;
         }
         // zoomX = x;
         // zoomY = y;
     }
-    cout << player.angHeight << " " << player.angHor << endl;
+    cout << player.angHeightView << " " << player.angHorView << endl;
 }
 
 //======================================================= MAIN
@@ -331,6 +380,7 @@ int main(int argc, char **argv)
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
+    glutKeyboardUpFunc(keyboardUp);
     glutPassiveMotionFunc(mouse_move);
     glutMotionFunc(adjust_angle);
     glutMouseFunc(zoom_wheel);

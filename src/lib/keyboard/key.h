@@ -4,6 +4,7 @@ class Key : public Cuboid
 public:
     GLdouble velZ = 0, deltaZ = 0;
     char letter;
+    bool pressed = false;
     Key() {}
     Key(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, char letter) : Cuboid(base, x, y, z, colour), letter(letter)
     {
