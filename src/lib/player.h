@@ -1,3 +1,9 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
 #include "cg-lib.h"
 #define fac 0.2
 #define g 0.1

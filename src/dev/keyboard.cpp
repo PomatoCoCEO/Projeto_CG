@@ -1,8 +1,12 @@
 /* ===================================================================================
     Departamento Eng. Informatica - FCTUC
     Computacao Grafica - 2021/22
-    ................................................ JHenriques / APerrotta
-    Trabalho 3 - Visualizacao
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+    FICHEIRO PRINCIPAL
+    Execução: no presente diretório, escrever o seguinte comando no terminal:
+    ./glut++.sh keyboard.cpp remote && ./remote
+    O código foi elaborado no sistema operativo Linux
 ======================================================================================= */
 
 #include <stdlib.h>
@@ -135,7 +139,7 @@ void display(void)
 
 void press_key(int pos_key)
 {
-    cout << "Key pressed: " << pos_key << endl;
+    // cout << "Key pressed: " << pos_key << endl;
     k.keys[pos_key].pressed = true;
     if (k.keys[pos_key].deltaZ > -0.4)
         k.keys[pos_key].velZ = key_speed; // press down
@@ -222,8 +226,6 @@ void keyboard(unsigned char key, int x, int y)
 
 void teclasNotAscii(int key, int x, int y)
 {
-    //.. observador pode andar � volda da cena  (setas esquerda / direita)
-    //.. observador pode andar para cima e para baixo (setas cima / baixo )
 
     if (key == GLUT_KEY_UP)
     {
@@ -252,7 +254,7 @@ void teclasNotAscii(int key, int x, int y)
         yFocus += 0.1;
     }
 
-    cout << "(x,y,z) = (" << xFocus << "," << yFocus << "," << zFocus << ")\n";
+    // cout << "(x,y,z) = (" << xFocus << "," << yFocus << "," << zFocus << ")\n";
     glutPostRedisplay();
 }
 
@@ -384,11 +386,7 @@ int main(int argc, char **argv)
 
     k = Keyboard();
 
-    // cout << "Point length: " << k.pts.size() << "; colour length: " << k.colours.size() << endl;
     inicializa();
-    // cu = Cuboid(point3d(0, 0, 0), 1, 1, 1, GREY);
-    // cu.draw();
-    // glutSwapBuffers();
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);

@@ -1,3 +1,9 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
 #ifndef POLYGON_H
 #define POLYGON_H
 #include "point.h"
@@ -14,10 +20,8 @@ struct Polygon
     vector<GeoTransform<GLfloat>> transform;
     void draw()
     {
-        // glPushMatrix();
-        // cout << "Drawing...\n";
         for (int i = transform.size() - 1; i >= 0; i--)
-            transform[i].apply(), cout << "BooDraw\n";
+            transform[i].apply();
         glBegin(GL_POLYGON);
         for (int i = 0; i < points.size(); i++)
         {
@@ -30,8 +34,6 @@ struct Polygon
         auto c = colours[0];
         glColor4f(c.r, c.g, c.b, c.a); // colour loop
         glEnd();
-        // if (pop)
-        //     glPopMatrix();
     }
 
     void addFunction(func_code code, vector<GLfloat> args)

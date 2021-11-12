@@ -1,3 +1,11 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
+#ifndef KEY_H
+#define KEY_H
 #include "../cg-lib.h"
 class Key : public Cuboid
 {
@@ -17,3 +25,4 @@ public:
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
     }
 };
+#endif

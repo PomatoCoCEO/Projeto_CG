@@ -1,3 +1,11 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
+#ifndef MOUSE_CUBE_H
+#define MOUSE_CUBE_H
 #include "../cg-lib.h"
 
 class MouseCube : public Cuboid
@@ -11,3 +19,4 @@ public:
     {
     }
 };
+#endif

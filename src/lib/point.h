@@ -1,3 +1,9 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
 #ifndef POINT_H
 #define POINT_H
 #define DEG_TO_RAD(d) ((d)*M_PI / 180.0)
