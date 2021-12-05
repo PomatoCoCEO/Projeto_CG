@@ -117,41 +117,39 @@ void display(void)
             xFocus + zoomRad * cos(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)),
             yFocus + zoomRad * cos(DEG_TO_RAD(verAng)),
             zFocus + zoomRad * sin(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)));
-
+        point3d vecDir(-cos(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)),
+                       -cos(DEG_TO_RAD(verAng)),
+                       -sin(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)));
         gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/
                   posObs.x,
                   posObs.y,
                   posObs.z,
                   xFocus, yFocus, zFocus, 0, 1, 0);
         // lights
-        Light l1 = Light(GL_LIGHT0, posObs, 1.0f, WHITE, WHITE, WHITE, 2, 0.1);
+        Light l1 = Light(GL_LIGHT0, posObs, 1.0f, WHITE, WHITE, WHITE, 1, 1, 0.02, vecDir, 0.2, 45);
     }
     else
     {
         point3d p = player.pos;
+        point3d vecDir(cos(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)),
+                       cos(DEG_TO_RAD(player.angHeightView)),
+                       sin(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)));
         // cout << p.x << " " << p.y << " " << p.z << endl;
-        point3d dir(p.x + cos(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)),
-                    p.y + cos(DEG_TO_RAD(player.angHeightView)),
-                    p.z + sin(DEG_TO_RAD(player.angHorView)) * sin(DEG_TO_RAD(player.angHeightView)));
+        point3d dir = p + vecDir;
         gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/
                   p.x,
                   p.y,
                   p.z,
                   dir.x, dir.y, dir.z, 0, 1, 0);
         // LIGHTS
-        Light l1 = Light(GL_LIGHT0, p, 1.0f, BLACK, GREEN, RED, 10, 0.1);
+        Light l1 = Light(GL_LIGHT0, p, 1.0f, WHITE, WHITE, WHITE, 0.1, 0.1, 0.02, vecDir, 0, 45);
     }
-    Light l2(GL_LIGHT1, point3d(-1, -1, -1), 0, BLACK, GREEN, RED, 0.01f, 0, 0);
+    Light l2(GL_LIGHT1, point3d(20, 20, 20), 1, WHITE, WHITE, WHITE, 0.3, 0.1, 0.01, point3d(-1, -1, -1), 0, 45);
+    Light l3(GL_LIGHT2, point3d(10, 5, 5), 1, WHITE, WHITE, WHITE, 0.3, 0.1, 0.01, point3d(-1, 0, 0), 0, 45);
     //================================================================= N�o modificar !!!!!!!!!!!!
-    cout << "Before drawing\n";
-    //����������������������������������������������������������Objectos
     drawEixos();
-    cout << "eixos\n";
     drawScene();
-    cout << "scene\n";
     drawPlayer();
-    cout << "Player\n";
-    //. . . . . . . . . . . . . . . . . . . . .  Actualizacao
     glutSwapBuffers();
 }
 

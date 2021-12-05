@@ -1,0 +1,13 @@
+In file included from ../lib/keyboard/../cg-lib.h:16,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../light/light.h: In member function ‘void Light::apply()’:
+../lib/keyboard/../light/light.h:36:34: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::x’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
+      |                          ~~~~~~~~^
+../lib/keyboard/../light/light.h:36:45: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::y’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
+      |                                     ~~~~~~~~^
+../lib/keyboard/../light/light.h:36:56: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::z’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
+      |                                                ~~~~~~~~^
