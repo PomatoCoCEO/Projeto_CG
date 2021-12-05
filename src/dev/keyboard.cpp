@@ -15,7 +15,7 @@
 #include <GL/glut.h>
 #include <ctype.h>
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
 #include "../lib/keyboard/keyboard.h"
 #include "../lib/player.h"
 using namespace std;
@@ -45,8 +45,13 @@ void inicializa(void)
     glClearColor(0, 0, 0, 1); //������������������������������Apagar
     glEnable(GL_DEPTH_TEST);  //������������������������������Profundidade
     glShadeModel(GL_SMOOTH);  //������������������������������Interpolacao de cores
-
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_NORMALIZE);
+    cout << "Before textures\n";
+    initTextures();
+    cout << "After textures\n";
     // glVertexPointer(3, GL_FLOAT, 0, &(k.pts[0])); //���������������VertexArrays: vertices + normais + cores
     // glNormalPointer(GL_FLOAT, 0, normais);
     // glEnableClientState(GL_NORMAL_ARRAY);
@@ -99,19 +104,28 @@ void display(void)
     //================================================================= APaga ecran e lida com profundidade (3D)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //================================================================= N�o modificar !!!!!!!!!!!!
-    glViewport(0, 0, wScreen, hScreen);
-    glMatrixMode(GL_PROJECTION);
+    glViewport(0, 0, wScreen, hScreen); // VIEWPORT
+    glMatrixMode(GL_PROJECTION);        // PROJECTION
     glLoadIdentity();
     gluPerspective(angZoom, (float)wScreen / hScreen, 0.1, 1000);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    // VISUALIZATION
     if (mode == 0)
+    {
+        auto posObs = point3d(
+            xFocus + zoomRad * cos(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)),
+            yFocus + zoomRad * cos(DEG_TO_RAD(verAng)),
+            zFocus + zoomRad * sin(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)));
+
         gluLookAt(/*rVisao * cos(PI / 2 * aVisao), yCam, rVisao * sin(PI / 2 * aVisao)*/
-                  xFocus + zoomRad * cos(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)),
-                  yFocus + zoomRad * cos(DEG_TO_RAD(verAng)),
-                  zFocus + zoomRad * sin(DEG_TO_RAD(horAng)) * sin(DEG_TO_RAD(verAng)),
+                  posObs.x,
+                  posObs.y,
+                  posObs.z,
                   xFocus, yFocus, zFocus, 0, 1, 0);
+        // lights
+        Light l1 = Light(GL_LIGHT0, posObs, 1.0f, WHITE, WHITE, WHITE, 2, 0.1);
+    }
     else
     {
         point3d p = player.pos;
@@ -124,15 +138,19 @@ void display(void)
                   p.y,
                   p.z,
                   dir.x, dir.y, dir.z, 0, 1, 0);
-        // printf("(%lf,%lf,%lf) looking at (%lf, %lf, %lf)\n", p.x, p.y, p.z, dir.x, dir.y, dir.z);
+        // LIGHTS
+        Light l1 = Light(GL_LIGHT0, p, 1.0f, BLACK, GREEN, RED, 10, 0.1);
     }
+    Light l2(GL_LIGHT1, point3d(-1, -1, -1), 0, BLACK, GREEN, RED, 0.01f, 0, 0);
     //================================================================= N�o modificar !!!!!!!!!!!!
-
+    cout << "Before drawing\n";
     //����������������������������������������������������������Objectos
     drawEixos();
+    cout << "eixos\n";
     drawScene();
+    cout << "scene\n";
     drawPlayer();
-
+    cout << "Player\n";
     //. . . . . . . . . . . . . . . . . . . . .  Actualizacao
     glutSwapBuffers();
 }
@@ -377,16 +395,24 @@ void mouse_move(int x, int y)
 //======================================================= MAIN
 int main(int argc, char **argv)
 {
-
+    cout << "Main1\n";
     glutInit(&argc, argv);
+    cout << "Main2\n";
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    cout << "Main3\n";
     glutInitWindowSize(wScreen, hScreen);
+    cout << "Main4\n";
     glutInitWindowPosition(300, 100);
-    glutCreateWindow("Teclado Gaming: WASD");
+    cout << "Main5\n";
 
-    k = Keyboard();
+    glutCreateWindow("Teclado Gaming: WASD");
+    cout << "Main6\n";
 
     inicializa();
+    cout << "Main7\n";
+
+    k = Keyboard();
+    cout << "After Constructor\n";
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
