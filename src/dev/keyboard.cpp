@@ -30,6 +30,7 @@ int mode = 0;
 int zoomX = 0, zoomY = 0;
 Keyboard k;
 Cuboid cu;
+Santa santa;
 GLdouble key_speed = -0.02;
 //================================================================================
 //=========================================================================== INIT
@@ -37,9 +38,11 @@ GLdouble key_speed = -0.02;
 vector<GLdouble> cuVertices = {
     0, 0, 0};*/
 vector<GLdouble> cuVertices, cuColours;
+vector<Skull> skulls;
 vector<GLuint> vec = {0, 1, 3, 2};
 int xPos, yPos;
 
+void generateMosaic(int no_skulls, double radius_field);
 void inicializa(void)
 {
     glClearColor(0, 0, 0, 1); //������������������������������Apagar
@@ -53,6 +56,7 @@ void inicializa(void)
     glEnable(GL_NORMALIZE);
     // cout << "Before textures\n";
     initTextures();
+    generateMosaic(30, 30);
     // cout << "After textures\n";
     // glVertexPointer(3, GL_FLOAT, 0, &(k.pts[0])); //���������������VertexArrays: vertices + normais + cores
     // glNormalPointer(GL_FLOAT, 0, normais);
@@ -100,10 +104,38 @@ void drawPlayer()
     glPopMatrix();
 }
 
+void drawMosaics()
+{
+    for (int i = 0; i < skulls.size(); i++)
+    {
+        cout << i << endl;
+        skulls[i].draw();
+    }
+    santa.draw();
+}
+
+void generateMosaic(int no_skulls, double radius_field)
+{
+    GLdouble minZ = -radius_field, maxZ = 20 + radius_field, minX = -2 - radius_field, maxX = radius_field;
+    int noDivs = 100000;
+    for (int i = 0; i <= no_skulls; i++)
+    {
+        int ra = rand() % noDivs;
+        double p = (ra + 0.0) / (100000.0);
+        GLdouble posX = minZ + p * (maxZ - minZ);
+        ra = rand() % noDivs;
+        p = (ra + 0.0) / (100000.0);
+        GLdouble posZ = minZ + p * (maxZ - minZ);
+        if (i < no_skulls)
+            skulls.emplace_back(point3d(posX, 0, posZ), 1.0);
+        else
+            santa = Santa(point3d(posX, 0, posZ), 1);
+    }
+}
+
 void display(void)
 {
 
-    //================================================================= APaga ecran e lida com profundidade (3D)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glViewport(0, 0, wScreen, hScreen); // VIEWPORT
@@ -148,9 +180,13 @@ void display(void)
     }
     Light l2 = Light(GL_LIGHT1, point3d(10, 10, 10), 1, WHITE, WHITE, WHITE, 0.5, 0, 0, point3d(-1, -1, -1), 0, 80);
     Light l3(GL_LIGHT2, point3d(5, 5, 5), 1, WHITE, WHITE, WHITE, 0.001, 0, 0.03, point3d(-1, 0, 0), 0, 80);
+    cout << "Before drawing" << endl;
     drawEixos();
     drawScene();
     drawPlayer();
+    cout << "Before drawing mosaics" << endl;
+    drawMosaics();
+    cout << "After drawing" << endl;
     glutSwapBuffers();
 }
 
