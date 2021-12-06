@@ -44,14 +44,16 @@ void inicializa(void)
 {
     glClearColor(0, 0, 0, 1); //������������������������������Apagar
     glEnable(GL_DEPTH_TEST);  //������������������������������Profundidade
-    glShadeModel(GL_SMOOTH);  //������������������������������Interpolacao de cores
+    glEnable(GL_ALPHA_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glShadeModel(GL_SMOOTH); //������������������������������Interpolacao de cores
     glEnableClientState(GL_VERTEX_ARRAY);
-    glEnable(GL_TEXTURE_2D);
     glEnable(GL_LIGHTING);
     glEnable(GL_NORMALIZE);
-    cout << "Before textures\n";
+    // cout << "Before textures\n";
     initTextures();
-    cout << "After textures\n";
+    // cout << "After textures\n";
     // glVertexPointer(3, GL_FLOAT, 0, &(k.pts[0])); //���������������VertexArrays: vertices + normais + cores
     // glNormalPointer(GL_FLOAT, 0, normais);
     // glEnableClientState(GL_NORMAL_ARRAY);
@@ -142,11 +144,10 @@ void display(void)
                   p.z,
                   dir.x, dir.y, dir.z, 0, 1, 0);
         // LIGHTS
-        Light l1 = Light(GL_LIGHT0, p, 1.0f, WHITE, WHITE, WHITE, 0.1, 0.1, 0.02, vecDir, 0, 45);
+        Light l1 = Light(GL_LIGHT0, p, 1.0f, WHITE, WHITE, WHITE, 0.01, 0.1, 0, vecDir, 0, 10);
     }
-    Light l2(GL_LIGHT1, point3d(20, 20, 20), 1, WHITE, WHITE, WHITE, 0.3, 0.1, 0.01, point3d(-1, -1, -1), 0, 45);
-    Light l3(GL_LIGHT2, point3d(10, 5, 5), 1, WHITE, WHITE, WHITE, 0.3, 0.1, 0.01, point3d(-1, 0, 0), 0, 45);
-    //================================================================= N�o modificar !!!!!!!!!!!!
+    Light l2 = Light(GL_LIGHT1, point3d(10, 10, 10), 1, WHITE, WHITE, WHITE, 0.5, 0, 0, point3d(-1, -1, -1), 0, 80);
+    Light l3(GL_LIGHT2, point3d(5, 5, 5), 1, WHITE, WHITE, WHITE, 0.001, 0, 0.03, point3d(-1, 0, 0), 0, 80);
     drawEixos();
     drawScene();
     drawPlayer();

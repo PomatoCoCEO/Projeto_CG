@@ -1,1 +1,1 @@
-g++  keyboard.cpp ../lib/textures/texture.cpp ../lib/material/material.cpp  ../lib/textures/RgbImage.cpp -o remote -lglut -lGL -lGLU
+g++  keyboard.cpp ../lib/textures/texture.cpp  ../lib/textures/RgbImage.cpp -o remote -lglut -lGL -lGLU
