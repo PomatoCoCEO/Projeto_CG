@@ -8,9 +8,10 @@
 #define CUBOID_H
 #include <GL/glut.h>
 #include <iostream>
-#include "polygon.h"
+#include "rectangle.h"
 #include "geoTransform.h"
-#include <bits/stdc++.h>
+#include "material/material.h"
+#include <vector>
 #define LSOne(s) ((s) & (-(s)))
 using namespace std;
 
@@ -19,7 +20,8 @@ using namespace std;
 class Solid
 {
 public:
-    vector<Polygon> faces;
+    vector<Rectangle> faces;
+    int vertex_array_pos = 0;
 };
 
 class Cuboid : public Solid
@@ -28,8 +30,11 @@ class Cuboid : public Solid
 public:
     vector<GLdouble> points;
     vector<GLdouble> colors;
+    int xDivs = 1, yDivs = 1;
+    material *m;
+    Texture *tex = nullptr;
     Cuboid() {}
-    Cuboid(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour)
+    Cuboid(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, material *m, Texture *tex = nullptr, int xDivs = 1, int yDivs = 1) : m(m), tex(tex), xDivs(xDivs), yDivs(yDivs)
     {
         vector<GLdouble> vec1 = {x, y, z}; // vec2 = {base.x, base.y, base.z};
         // points
@@ -50,17 +55,18 @@ public:
         }
         // faces
         vector<point3d> pol = {pts[0], pts[1], pts[3], pts[2]};
-        faces.emplace_back(pol, light(colour));
+        faces.emplace_back(pol, light(colour), point3d(0, 0, -1), tex, xDivs, yDivs);
         pol = {pts[0], pts[2], pts[6], pts[4]};
-        faces.emplace_back(pol, dark(colour));
+        faces.emplace_back(pol, dark(colour), point3d(-1, 0, 0), tex, xDivs, yDivs);
         pol = {pts[1], pts[3], pts[7], pts[5]};
-        faces.emplace_back(pol, dark(colour));
+        faces.emplace_back(pol, dark(colour), point3d(1, 0, 0), tex, xDivs, yDivs);
         pol = {pts[4], pts[5], pts[7], pts[6]};
-        faces.emplace_back(pol, light(colour));
+        faces.emplace_back(pol, light(colour), point3d(0, 0, 1), tex, xDivs, yDivs);
         pol = {pts[0], pts[1], pts[5], pts[4]};
-        faces.emplace_back(pol, colour);
+        faces.emplace_back(pol, colour, point3d(0, -1, 0), tex, xDivs, yDivs);
         pol = {pts[2], pts[3], pts[7], pts[6]};
-        faces.emplace_back(pol, colour);
+        faces.emplace_back(pol, colour, point3d(0, 1, 0), tex, xDivs, yDivs);
+        cout << "First face data: " << faces[0].xDivs << "," << faces[0].yDivs << endl;
         for (auto f : faces)
         {
             for (auto p : f.points)
@@ -80,6 +86,19 @@ public:
         transform.push_back(g);*/
         for (auto &f : faces)
             f.addFunction(code, args);
+    }
+
+    void draw()
+    {
+
+        // applyMaterial(m);
+        m->apply();
+        // cout << "first component: " << m->amb[0] << " " << m->amb[1] << " " << m->amb[2] << " " << m->amb[3] << " " << m->diff[0] << " " << m->diff[1] << " " << m->diff[2] << " "
+        //    << m->spec[0] << " " << m->spec[1] << " " << m->spec[2] << " " << m->spec[3] << " " << endl;
+        for (int i = 0; i < faces.size(); i++)
+        {
+            faces[i].draw();
+        }
     }
     /*
     void draw()

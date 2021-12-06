@@ -14,7 +14,7 @@ public:
     char letter;
     bool pressed = false;
     Key() {}
-    Key(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, char letter) : Cuboid(base, x, y, z, colour), letter(letter)
+    Key(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, char letter, material *m, Texture *tex = nullptr, int xDivs = 1, int yDivs = 1) : Cuboid(base, x, y, z, colour, m, tex, xDivs, yDivs), letter(letter)
     {
     }
     void drawLetter()

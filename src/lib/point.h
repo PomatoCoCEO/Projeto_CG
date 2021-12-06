@@ -39,6 +39,11 @@ struct point3d
         x /= a, y /= a, z /= a;
         return *this; // point2d(x + a.x, y + a.y);
     }
+    point3d operator*(double a)
+    {
+        point3d n(x * a, y * a, z * a);
+        return n; // point2d(x + a.x, y + a.y);
+    }
 
     point3d operator-(const point3d &a)
     {

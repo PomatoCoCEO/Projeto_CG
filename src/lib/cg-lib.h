@@ -11,4 +11,7 @@
 #include "geoTransform.h"
 #include "point.h"
 #include "polygon.h"
+#include "textures/textures.h"
+#include "textures/RgbImage.h"
+#include "light/light.h"
 #endif

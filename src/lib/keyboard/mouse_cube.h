@@ -15,7 +15,7 @@ public:
     GLdouble angX = 0,
              angY = 0, velX = 0, velY = 0;
     MouseCube() {}
-    MouseCube(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour) : Cuboid(base, x, y, z, colour)
+    MouseCube(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, material* m, Texture *t, int xDivs, int yDivs) : Cuboid(base, x, y, z, colour, m, t, xDivs, yDivs)
     {
     }
 };
