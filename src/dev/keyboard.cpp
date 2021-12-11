@@ -28,10 +28,14 @@ GLdouble xFocus = 10, yFocus = 5, zFocus = 2, zoomRad = 20, verAng = 45, horAng 
 Player player(point3d(20, 1, 20));
 int mode = 0;
 int zoomX = 0, zoomY = 0;
+int playerScore = 0;
 Keyboard k;
+Sphere sphere;
 Cuboid cu;
 Santa santa;
 GLdouble key_speed = -0.02;
+Light l2 = Light(GL_LIGHT1, point3d(-1, -1, -1), 1, WHITE, WHITE, WHITE, 0.01, 0.0001, 0);
+
 //================================================================================
 //=========================================================================== INIT
 /*
@@ -92,6 +96,7 @@ void drawEixos()
 
 void drawScene()
 {
+    sphere.draw();
     k.draw();
 }
 
@@ -106,9 +111,10 @@ void drawPlayer()
 
 void drawMosaics()
 {
+    materials[26].apply();
     for (int i = 0; i < skulls.size(); i++)
     {
-        cout << i << endl;
+        // cout << i << endl;
         skulls[i].draw();
     }
     santa.draw();
@@ -160,7 +166,7 @@ void display(void)
                   posObs.z,
                   xFocus, yFocus, zFocus, 0, 1, 0);
         // lights
-        Light l1 = Light(GL_LIGHT0, posObs, 1.0f, WHITE, WHITE, WHITE, 1, 1, 0.02, vecDir, 0.2, 45);
+        Light l1 = Light(GL_LIGHT0, posObs, 1.0f, WHITE, WHITE, WHITE, 0.01, 0.006, 0.00, vecDir, 0.2, 45);
     }
     else
     {
@@ -178,15 +184,22 @@ void display(void)
         // LIGHTS
         Light l1 = Light(GL_LIGHT0, p, 1.0f, WHITE, WHITE, WHITE, 0.01, 0.1, 0, vecDir, 0, 10);
     }
-    Light l2 = Light(GL_LIGHT1, point3d(10, 10, 10), 1, WHITE, WHITE, WHITE, 0.5, 0, 0, point3d(-1, -1, -1), 0, 80);
-    Light l3(GL_LIGHT2, point3d(5, 5, 5), 1, WHITE, WHITE, WHITE, 0.001, 0, 0.03, point3d(-1, 0, 0), 0, 80);
-    cout << "Before drawing" << endl;
+    if (l2.on)
+    {
+        auto s = l2.mult;
+        l2 = Light(GL_LIGHT1, point3d(-10, -10, -10), 1, WHITE, WHITE, WHITE, 0.5, 0.0001, 0);
+        l2.mult = s;
+        l2.apply();
+    }
+    // Light l3(GL_LIGHT2, point3d(5, 5, 5), 1, WHITE, WHITE, WHITE, 0.1, 0, 0.03, point3d(-1, -1, 1), 0, 30);
+    // cout << "Before drawing" << endl;
     drawEixos();
     drawScene();
-    drawPlayer();
-    cout << "Before drawing mosaics" << endl;
     drawMosaics();
-    cout << "After drawing" << endl;
+    drawPlayer();
+    // cout << "Before drawing mosaics" << endl;
+
+    // cout << "After drawing" << endl;
     glutSwapBuffers();
 }
 
@@ -259,6 +272,31 @@ void keyboard(unsigned char key, int x, int y)
     case 'P':
         mode = 1 - mode;
         break;
+    case 'F':
+        // cout << "F pressed \n";
+        for (int i = 0; i < k.walls.size(); i++)
+        {
+            k.walls[i].fall();
+        }
+        break;
+    case 'O':
+        l2.toggle();
+        break;
+    case 'R':
+        l2.turn_red();
+        break;
+    case 'G':
+        cout << "toggling l2\n";
+        l2.turn_green();
+        break;
+    case 'B':
+        cout << "toggling l2\n";
+        l2.turn_blue();
+        break;
+    case 'H':
+        cout << "toggling l2\n";
+        l2.turn_white();
+        break;
     case ' ':
         press_key(4);
         // if (mode)
@@ -270,7 +308,13 @@ void keyboard(unsigned char key, int x, int y)
     case '-':
         verAng -= 2.0;
         break;
+    case '<':
+        // cout << "Before: " << materials[0].shininess << endl;
+        materials[0].alterShininess();
+        // cout << "After: " << materials[0].shininess << endl;
+        break;
     case 27:
+        cout << "SCORE: " << playerScore << endl;
         exit(0);
         break;
     }
@@ -313,7 +357,6 @@ void teclasNotAscii(int key, int x, int y)
 
 void zoom_wheel(int button, int state, int x, int y)
 {
-    cout << "Button " << button << endl;
     if (mode == 0)
         switch (button)
         {
@@ -331,7 +374,7 @@ void zoom_wheel(int button, int state, int x, int y)
         default:
             break;
         }
-    cout << "zoomRatio = " << zoomRatio << "\n";
+    // cout << "zoomRatio = " << zoomRatio << "\n";
 }
 
 void adjust_angle(int x, int y)
@@ -355,9 +398,63 @@ void adjust_angle(int x, int y)
     }
 }
 
+void writeStringOnScreen(string string)
+{
+    glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+    glColor3f(1, 1, 1);
+    glRasterPos2d(0.10 * wScreen, 0.80 * hScreen);
+    for (int i = 0; i < string.length(); i++)
+    {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+    }
+    glutSwapBuffers();
+}
+
 void animate_keyboard(int time)
 {
     // handle key pressing
+    if (player.pos.y <= 1 && player.velVert <= 0)
+    {
+        auto &ps = player.pos;
+        for (int i = 0; i < skulls.size(); i++)
+        {
+            auto &s = skulls[i].center;
+            if (__hypot3(ps.x - s.x, ps.y - s.y, ps.z - s.z) <= sqrt(2.0))
+            {
+                auto aid = player.mov;
+                // writeStringOnScreen("GAME OVER! You touched a Skull\n");
+                cout << "You touched a SKULL! Score -1!\n";
+                playerScore--;
+                player = Player(point3d(20, 1, 20));
+                player.mov = aid;
+                for (int i = 0; i < k.walls.size(); i++)
+                {
+                    k.walls[i].reset();
+                }
+                generateMosaic(30, 30);
+
+                // getchar();
+                // exit(1);
+            }
+        }
+        auto &ss = santa.center;
+        if (__hypot3(ps.x - ss.x, ps.y - ss.y, ps.z - ss.z) <= sqrt(2.0))
+        {
+            cout << "Congrats! You discovered Santa!\n";
+            auto aid = player.mov;
+            playerScore += 10;
+            player = Player(point3d(20, 1, 20));
+            player.mov = aid;
+            for (int i = 0; i < k.walls.size(); i++)
+            {
+                k.walls[i].reset();
+            }
+            generateMosaic(30, 30);
+            // getchar();
+            // exit(0);
+        }
+    }
     for (int i = 0; i < k.keys.size(); i++)
     {
         k.keys[i].deltaZ += k.keys[i].velZ;
@@ -414,8 +511,8 @@ void mouse_move(int x, int y)
     {
         // deltaX = zoomX - x;
         // deltaY = zoomY - y;
-        player.angHorView += deltaX / 5.0;
-        double final = player.angHeightView + deltaY / 5.0;
+        player.angHorView += deltaX / ((wScreen + 0.0) / 360.0);
+        double final = player.angHeightView + deltaY / ((hScreen + 0.0) / 270.0);
         if (final > 0 && final < 180)
         {
             player.angHeightView = final;
@@ -423,7 +520,6 @@ void mouse_move(int x, int y)
         // zoomX = x;
         // zoomY = y;
     }
-    cout << player.angHeightView << " " << player.angHorView << endl;
 }
 
 //======================================================= MAIN
@@ -447,6 +543,7 @@ int main(int argc, char **argv)
     cout << "Main7\n";
 
     k = Keyboard();
+    sphere = Sphere(100, 100, 100, &textures[7]);
     cout << "After Constructor\n";
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);

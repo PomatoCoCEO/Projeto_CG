@@ -2,12 +2,30 @@ In file included from ../lib/keyboard/../cg-lib.h:19,
                  from ../lib/keyboard/keyboard.h:9,
                  from keyboard.cpp:19:
 ../lib/keyboard/../light/light.h: In member function ‘void Light::apply()’:
-../lib/keyboard/../light/light.h:36:34: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::x’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
-   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
-      |                          ~~~~~~~~^
-../lib/keyboard/../light/light.h:36:45: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::y’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
-   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
-      |                                     ~~~~~~~~^
-../lib/keyboard/../light/light.h:36:56: warning: narrowing conversion of ‘((Light*)this)->Light::spotDir.point3d::z’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
-   36 |         float spDir[] = {spotDir.x, spotDir.y, spotDir.z};
-      |                                                ~~~~~~~~^
+../lib/keyboard/../light/light.h:30:40: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::amb.colour4::r)) * ((Light*)this)->Light::mult.colour4::r)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   30 |         float ambArr[] = {(float)amb.r * mult.r,
+      |                           ~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:31:40: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::amb.colour4::g)) * ((Light*)this)->Light::mult.colour4::g)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   31 |                           (float)amb.g * mult.g,
+      |                           ~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:32:40: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::amb.colour4::b)) * ((Light*)this)->Light::mult.colour4::b)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   32 |                           (float)amb.b * mult.b};
+      |                           ~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:34:42: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::diff.colour4::r)) * ((Light*)this)->Light::mult.colour4::r)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   34 |         float diffArr[] = {(float)diff.r * mult.r, (float)diff.g * mult.g, (float)diff.b * mult.b};
+      |                            ~~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:34:66: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::diff.colour4::g)) * ((Light*)this)->Light::mult.colour4::g)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   34 |         float diffArr[] = {(float)diff.r * mult.r, (float)diff.g * mult.g, (float)diff.b * mult.b};
+      |                                                    ~~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:34:90: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::diff.colour4::b)) * ((Light*)this)->Light::mult.colour4::b)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   34 |         float diffArr[] = {(float)diff.r * mult.r, (float)diff.g * mult.g, (float)diff.b * mult.b};
+      |                                                                            ~~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:36:42: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::spec.colour4::r)) * ((Light*)this)->Light::mult.colour4::r)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float specArr[] = {(float)spec.r * mult.r, (float)spec.g * mult.g, (float)spec.b * mult.b};
+      |                            ~~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:36:66: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::spec.colour4::g)) * ((Light*)this)->Light::mult.colour4::g)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float specArr[] = {(float)spec.r * mult.r, (float)spec.g * mult.g, (float)spec.b * mult.b};
+      |                                                    ~~~~~~~~~~~~~~^~~~~~~~
+../lib/keyboard/../light/light.h:36:90: warning: narrowing conversion of ‘(((GLdouble)((float)((Light*)this)->Light::spec.colour4::b)) * ((Light*)this)->Light::mult.colour4::b)’ from ‘GLdouble’ {aka ‘double’} to ‘float’ [-Wnarrowing]
+   36 |         float specArr[] = {(float)spec.r * mult.r, (float)spec.g * mult.g, (float)spec.b * mult.b};
+      |                                                                            ~~~~~~~~~~~~~~^~~~~~~~
