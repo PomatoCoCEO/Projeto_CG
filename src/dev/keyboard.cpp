@@ -1,7 +1,7 @@
 /* ===================================================================================
     Departamento Eng. Informatica - FCTUC
     Computacao Grafica - 2021/22
-    Meta 1 do Projeto
+    Meta 2 do Projeto
     Autor: Paulo Cortesão, 2019216517
     FICHEIRO PRINCIPAL
     Execução: no presente diretório, escrever o seguinte comando no terminal:
@@ -34,14 +34,16 @@ Sphere sphere;
 Cuboid cu;
 Santa santa;
 GLdouble key_speed = -0.02;
-Light l2 = Light(GL_LIGHT1, point3d(-1, -1, -1), 1, WHITE, WHITE, WHITE, 0.01, 0.0001, 0);
-
+Light l2 = Light(GL_LIGHT1, point3d(-1, -1, -1), 1, GREY, WHITE, WHITE, 0.01, 0.0001, 0);
+Fire fire;
+Source source;
 //================================================================================
 //=========================================================================== INIT
 /*
 vector<GLdouble> cuVertices = {
     0, 0, 0};*/
-vector<GLdouble> cuVertices, cuColours;
+vector<GLdouble>
+    cuVertices, cuColours;
 vector<Skull> skulls;
 vector<GLuint> vec = {0, 1, 3, 2};
 int xPos, yPos;
@@ -182,21 +184,23 @@ void display(void)
                   p.z,
                   dir.x, dir.y, dir.z, 0, 1, 0);
         // LIGHTS
-        Light l1 = Light(GL_LIGHT0, p, 1.0f, WHITE, WHITE, WHITE, 0.01, 0.1, 0, vecDir, 0, 10);
+        Light l1 = Light(GL_LIGHT0, p, 1.0f, GREY, WHITE, WHITE, 0.01, 0.1, 0, vecDir, 0, 10);
     }
     if (l2.on)
     {
         auto s = l2.mult;
-        l2 = Light(GL_LIGHT1, point3d(-10, -10, -10), 1, WHITE, WHITE, WHITE, 0.5, 0.0001, 0);
+        l2 = Light(GL_LIGHT1, point3d(-10, -10, -10), 1, GREY, WHITE, WHITE, 0.5, 0.0001, 0);
         l2.mult = s;
         l2.apply();
     }
     // Light l3(GL_LIGHT2, point3d(5, 5, 5), 1, WHITE, WHITE, WHITE, 0.1, 0, 0.03, point3d(-1, -1, 1), 0, 30);
     // cout << "Before drawing" << endl;
-    drawEixos();
-    drawScene();
-    drawMosaics();
     drawPlayer();
+    drawEixos();
+    drawMosaics();
+    fire.apply();
+    source.apply();
+    drawScene();
     // cout << "Before drawing mosaics" << endl;
 
     // cout << "After drawing" << endl;
@@ -274,6 +278,7 @@ void keyboard(unsigned char key, int x, int y)
         break;
     case 'F':
         // cout << "F pressed \n";
+        fire = Fire(5000, 5, 0, 5, 500, 0.001, 0.001, 0.5, 1500);
         for (int i = 0; i < k.walls.size(); i++)
         {
             k.walls[i].fall();
@@ -296,6 +301,12 @@ void keyboard(unsigned char key, int x, int y)
     case 'H':
         cout << "toggling l2\n";
         l2.turn_white();
+        break;
+    case 'L':
+        source = Source(5000, 0, 0, 10, M_PI / 4.0, 600, 0.5);
+        break;
+    case 'M':
+        k.toggleGrid();
         break;
     case ' ':
         press_key(4);
@@ -423,6 +434,7 @@ void animate_keyboard(int time)
             if (__hypot3(ps.x - s.x, ps.y - s.y, ps.z - s.z) <= sqrt(2.0))
             {
                 auto aid = player.mov;
+                source = Source(500, 1, 0, 0, M_PI / 4.0, 600, 6);
                 // writeStringOnScreen("GAME OVER! You touched a Skull\n");
                 cout << "You touched a SKULL! Score -1!\n";
                 playerScore--;
@@ -441,6 +453,7 @@ void animate_keyboard(int time)
         auto &ss = santa.center;
         if (__hypot3(ps.x - ss.x, ps.y - ss.y, ps.z - ss.z) <= sqrt(2.0))
         {
+            fire = Fire(500, 5, 0, 5, 500, 0.001, 0.001, 0.5, 1500);
             cout << "Congrats! You discovered Santa!\n";
             auto aid = player.mov;
             playerScore += 10;
@@ -541,9 +554,10 @@ int main(int argc, char **argv)
 
     inicializa();
     cout << "Main7\n";
-
+    // fire = Fire(500, 5, 0, 5, 500, 0.001, 0.001, 0.5, 1500);
     k = Keyboard();
     sphere = Sphere(100, 100, 100, &textures[7]);
+    source = Source(500, 1, 0, 0, M_PI / 4.0, 600, 0.05);
     cout << "After Constructor\n";
     glutSpecialFunc(teclasNotAscii);
     glutDisplayFunc(display);
