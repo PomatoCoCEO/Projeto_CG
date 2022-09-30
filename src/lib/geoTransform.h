@@ -1,3 +1,9 @@
+/* ===================================================================================
+    Departamento Eng. Informatica - FCTUC
+    Computacao Grafica - 2021/22
+    Meta 1 do Projeto
+    Autor: Paulo Cortesão, 2019216517
+======================================================================================= */
 #ifndef GEOTRANSFORM_H
 #define GEOTRANSFORM_H
 #include <vector>
@@ -33,6 +39,7 @@ struct GeoTransform
         case SCALE:
             glScalef(args[0], args[1], args[2]);
             return;
+        default:
             throw "INVALID CODE";
         }
         // we can continue from here to fill this...

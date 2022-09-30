@@ -1,0 +1,1235 @@
+In file included from ../lib/keyboard/../polygon.h:12,
+                 from ../lib/keyboard/../rectangle.h:9,
+                 from ../lib/keyboard/../cuboid.h:11,
+                 from ../lib/keyboard/../cg-lib.h:10,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../textures/textures.h: In constructor ‘Texture::Texture(int, std::string, int, int, int)’:
+../lib/keyboard/../textures/textures.h:18:12: warning: ‘Texture::nameOfFile’ will be initialized after [-Wreorder]
+   18 |     string nameOfFile;
+      |            ^~~~~~~~~~
+../lib/keyboard/../textures/textures.h:17:9: warning:   ‘int Texture::blend’ [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |         ^~~~~
+../lib/keyboard/../textures/textures.h:19:5: warning:   when initialized here [-Wreorder]
+   19 |     Texture(int pos, string nameOfFile, int blend, int repeat, int linear) : pos(pos), nameOfFile(nameOfFile), blend(blend), linear(linear), repeat(repeat)
+      |     ^~~~~~~
+../lib/keyboard/../textures/textures.h:17:24: warning: ‘Texture::linear’ will be initialized after [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |                        ^~~~~~
+../lib/keyboard/../textures/textures.h:17:16: warning:   ‘int Texture::repeat’ [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |                ^~~~~~
+../lib/keyboard/../textures/textures.h:19:5: warning:   when initialized here [-Wreorder]
+   19 |     Texture(int pos, string nameOfFile, int blend, int repeat, int linear) : pos(pos), nameOfFile(nameOfFile), blend(blend), linear(linear), repeat(repeat)
+      |     ^~~~~~~
+In file included from ../lib/keyboard/../rectangle.h:9,
+                 from ../lib/keyboard/../cuboid.h:11,
+                 from ../lib/keyboard/../cg-lib.h:10,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../polygon.h: In member function ‘void Polygon::draw()’:
+../lib/keyboard/../polygon.h:30:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<point3d>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   30 |         for (int i = 0; i < points.size(); i++)
+      |                         ~~^~~~~~~~~~~~~~~
+../lib/keyboard/../polygon.h: In constructor ‘Polygon::Polygon(std::vector<point3d>&, std::vector<colour4>&, point3d, Texture*)’:
+../lib/keyboard/../polygon.h:21:21: warning: ‘Polygon::colours’ will be initialized after [-Wreorder]
+   21 |     vector<colour4> colours;
+      |                     ^~~~~~~
+../lib/keyboard/../polygon.h:19:13: warning:   ‘point3d Polygon::normal’ [-Wreorder]
+   19 |     point3d normal;
+      |             ^~~~~~
+../lib/keyboard/../polygon.h:49:5: warning:   when initialized here [-Wreorder]
+   49 |     Polygon(vector<point3d> &points, vector<colour4> &colours, point3d normal, Texture *text = nullptr) : points(points), colours(colours), normal(normal), text(text)
+      |     ^~~~~~~
+In file included from ../lib/keyboard/../cg-lib.h:10,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../cuboid.h: In constructor ‘Cuboid::Cuboid(point3d, GLdouble, GLdouble, GLdouble, colour4, material*, Texture*, int, int)’:
+../lib/keyboard/../cuboid.h:35:14: warning: ‘Cuboid::tex’ will be initialized after [-Wreorder]
+   35 |     Texture *tex = nullptr;
+      |              ^~~
+../lib/keyboard/../cuboid.h:33:9: warning:   ‘int Cuboid::xDivs’ [-Wreorder]
+   33 |     int xDivs = 1, yDivs = 1;
+      |         ^~~~~
+../lib/keyboard/../cuboid.h:37:5: warning:   when initialized here [-Wreorder]
+   37 |     Cuboid(point3d base, GLdouble x, GLdouble y, GLdouble z, colour4 colour, material *m, Texture *tex = nullptr, int xDivs = 1, int yDivs = 1) : m(m), tex(tex), xDivs(xDivs), yDivs(yDivs)
+      |     ^~~~~~
+In file included from ../lib/keyboard/../cg-lib.h:10,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../cuboid.h: In member function ‘void Cuboid::draw()’:
+../lib/keyboard/../cuboid.h:98:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Rectangle>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   98 |         for (int i = 0; i < faces.size(); i++)
+      |                         ~~^~~~~~~~~~~~~~
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h: At global scope:
+../lib/keyboard/../particles/fire_particle.h:64:2: error: expected ‘;’ after struct definition
+   64 | }
+      |  ^
+      |  ;
+../lib/keyboard/../particles/fire_particle.h: In constructor ‘Fire::Fire(int, GLfloat, GLfloat, GLfloat, int, GLdouble, GLdouble, GLdouble)’:
+../lib/keyboard/../particles/fire_particle.h:14:141: error: class ‘Fire’ does not have any field named ‘ttl’
+   14 |     Fire(int particles, GLfloat x, GLfloat y, GLfloat z, int ttl, GLdouble init_accel, GLdouble init_vy, GLdouble scale) : origin(x, y, z), ttl(ttl), particles(particles), scale(scale)
+      |                                                                                                                                             ^~~
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:12:22: warning: ‘Fire::particles’ will be initialized after [-Wreorder]
+   12 |     vector<Particle> particles;
+      |                      ^~~~~~~~~
+../lib/keyboard/../particles/fire_particle.h:11:14: warning:   ‘GLdouble Fire::scale’ [-Wreorder]
+   11 |     GLdouble scale;
+      |              ^~~~~
+../lib/keyboard/../particles/fire_particle.h:14:5: warning:   when initialized here [-Wreorder]
+   14 |     Fire(int particles, GLfloat x, GLfloat y, GLfloat z, int ttl, GLdouble init_accel, GLdouble init_vy, GLdouble scale) : origin(x, y, z), ttl(ttl), particles(particles), scale(scale)
+      |     ^~~~
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:16:24: error: ‘begin’ was not declared in this scope
+   16 |         for (auto &p : particles)
+      |                        ^~~~~~~~~
+../lib/keyboard/../particles/fire_particle.h:16:24: note: suggested alternatives:
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1224:5: note:   ‘std::begin’
+ 1224 |     begin(const valarray<_Tp>& __va)
+      |     ^~~~~
+In file included from /usr/include/c++/9/filesystem:38,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:129,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/fs_dir.h:516:3: note:   ‘std::filesystem::__cxx11::begin’
+  516 |   begin(recursive_directory_iterator __iter) noexcept
+      |   ^~~~~
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:16:24: error: ‘end’ was not declared in this scope
+   16 |         for (auto &p : particles)
+      |                        ^~~~~~~~~
+../lib/keyboard/../particles/fire_particle.h:16:24: note: suggested alternatives:
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1244:5: note:   ‘std::end’
+ 1244 |     end(const valarray<_Tp>& __va)
+      |     ^~~
+In file included from /usr/include/c++/9/filesystem:38,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:129,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/fs_dir.h:520:3: note:   ‘std::filesystem::__cxx11::end’
+  520 |   end(recursive_directory_iterator) noexcept
+      |   ^~~
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h: In member function ‘void Fire::apply()’:
+../lib/keyboard/../particles/fire_particle.h:38:32: error: ‘ay’ was not declared in this scope
+   38 |                 p.ay -= 0.01 * ay;
+      |                                ^~
+../lib/keyboard/../particles/fire_particle.h:40:60: error: no match for ‘operator-’ (operand types are ‘GLdouble’ {aka ‘double’} and ‘point3d’)
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                        ~~~ ^ ~~~~~~
+      |                                                          |   |
+      |                                                          |   point3d
+      |                                                          GLdouble {aka double}
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/bits/specfun.h:45,
+                 from /usr/include/c++/9/cmath:1927,
+                 from /usr/include/c++/9/math.h:36,
+                 from keyboard.cpp:14:
+/usr/include/c++/9/bits/stl_iterator.h:415:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__y.base() - __x.base())) std::operator-(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)’
+  415 |     operator-(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:415:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/bits/specfun.h:45,
+                 from /usr/include/c++/9/cmath:1927,
+                 from /usr/include/c++/9/math.h:36,
+                 from keyboard.cpp:14:
+/usr/include/c++/9/bits/stl_iterator.h:1212:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__x.base() - __y.base())) std::operator-(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)’
+ 1212 |     operator-(const move_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:1212:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::move_iterator<_IteratorL>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/vector:68,
+                 from keyboard.cpp:18:
+/usr/include/c++/9/bits/stl_bvector.h:214:3: note: candidate: ‘std::ptrdiff_t std::operator-(const std::_Bit_iterator_base&, const std::_Bit_iterator_base&)’
+  214 |   operator-(const _Bit_iterator_base& __x, const _Bit_iterator_base& __y)
+      |   ^~~~~~~~
+/usr/include/c++/9/bits/stl_bvector.h:214:39: note:   no known conversion for argument 1 from ‘GLdouble’ {aka ‘double’} to ‘const std::_Bit_iterator_base&’
+  214 |   operator-(const _Bit_iterator_base& __x, const _Bit_iterator_base& __y)
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:361:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator-(const std::complex<_Tp>&, const std::complex<_Tp>&)’
+  361 |     operator-(const complex<_Tp>& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:361:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::complex<_Tp>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:370:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator-(const std::complex<_Tp>&, const _Tp&)’
+  370 |     operator-(const complex<_Tp>& __x, const _Tp& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:370:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::complex<_Tp>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:379:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator-(const _Tp&, const std::complex<_Tp>&)’
+  379 |     operator-(const _Tp& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:379:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   ‘point3d’ is not derived from ‘const std::complex<_Tp>’
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:456:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator-(const std::complex<_Tp>&)’
+  456 |     operator-(const complex<_Tp>& __x)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:456:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::complex<_Tp>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/deque:67,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:68,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/stl_deque.h:370:5: note: candidate: ‘template<class _Tp, class _Ref, class _Ptr> typename std::_Deque_iterator<_Tp, _Ref, _Ptr>::difference_type std::operator-(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _Ref, _Ptr>&)’
+  370 |     operator-(const _Deque_iterator<_Tp, _Ref, _Ptr>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_deque.h:370:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/deque:67,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:68,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/stl_deque.h:382:5: note: candidate: ‘template<class _Tp, class _RefL, class _PtrL, class _RefR, class _PtrR> typename std::_Deque_iterator<_Tp, _Ref, _Ptr>::difference_type std::operator-(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _RefR, _PtrR>&)’
+  382 |     operator-(const _Deque_iterator<_Tp, _RefL, _PtrL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_deque.h:382:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:406:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__minus, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__minus, typename _Dom1::value_type>::result_type> std::operator-(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+  406 |     _DEFINE_EXPR_BINARY_OPERATOR(-, __minus)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:406:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:406:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__minus, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__minus, typename _Dom1::value_type>::result_type> std::operator-(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  406 |     _DEFINE_EXPR_BINARY_OPERATOR(-, __minus)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:406:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:406:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__minus, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__minus, typename _Dom1::value_type>::result_type> std::operator-(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  406 |     _DEFINE_EXPR_BINARY_OPERATOR(-, __minus)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:406:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   ‘point3d’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:406:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__minus, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__minus, typename _Dom1::value_type>::result_type> std::operator-(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+  406 |     _DEFINE_EXPR_BINARY_OPERATOR(-, __minus)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:406:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:406:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__minus, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__minus, typename _Dom1::value_type>::result_type> std::operator-(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  406 |     _DEFINE_EXPR_BINARY_OPERATOR(-, __minus)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:406:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   ‘point3d’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1186:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__minus, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__minus, _Tp>::result_type> std::operator-(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ 1186 | _DEFINE_BINARY_OPERATOR(-, __minus)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1186:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1186:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__minus, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__minus, _Tp>::result_type> std::operator-(const std::valarray<_Tp>&, const typename std::valarray<_Tp>::value_type&)’
+ 1186 | _DEFINE_BINARY_OPERATOR(-, __minus)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1186:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘GLdouble’ {aka ‘double’}
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1186:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__minus, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__minus, _Tp>::result_type> std::operator-(const typename std::valarray<_Tp>::value_type&, const std::valarray<_Tp>&)’
+ 1186 | _DEFINE_BINARY_OPERATOR(-, __minus)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1186:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:40:62: note:   ‘point3d’ is not derived from ‘const std::valarray<_Tp>’
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                              ^~~~~~
+../lib/keyboard/../particles/fire_particle.h:40:71: error: ‘z’ was not declared in this scope
+   40 |                 auto delta_hor = hypot(p.x - origin.x, p.z - origin - z);
+      |                                                                       ^
+../lib/keyboard/../particles/fire_particle.h:47:29: error: no match for ‘operator=’ (operand types are ‘colour3’ and ‘const colour4’)
+   47 |                     p.col = BLUE;
+      |                             ^~~~
+In file included from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../colour.h:20:8: note: candidate: ‘constexpr colour3& colour3::operator=(const colour3&)’
+   20 | struct colour3 : public colour4
+      |        ^~~~~~~
+../lib/keyboard/../colour.h:20:8: note:   no known conversion for argument 1 from ‘const colour4’ to ‘const colour3&’
+../lib/keyboard/../colour.h:20:8: note: candidate: ‘constexpr colour3& colour3::operator=(colour3&&)’
+../lib/keyboard/../colour.h:20:8: note:   no known conversion for argument 1 from ‘const colour4’ to ‘colour3&&’
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:46: error: no match for ‘operator*’ (operand types are ‘double’ and ‘const colour4’)
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                             ~~~~~~~~~~~~~~~~ ^ ~~~~
+      |                               |                |
+      |                               double           const colour4
+In file included from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../colour.h:26:9: note: candidate: ‘colour3 operator*(GLdouble, const colour3&)’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |         ^~~~~~~~
+../lib/keyboard/../colour.h:26:51: note:   no known conversion for argument 2 from ‘const colour4’ to ‘const colour3&’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |                                    ~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:391:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const std::complex<_Tp>&)’
+  391 |     operator*(const complex<_Tp>& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:391:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:400:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const _Tp&)’
+  400 |     operator*(const complex<_Tp>& __x, const _Tp& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:400:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:409:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const _Tp&, const std::complex<_Tp>&)’
+  409 |     operator*(const _Tp& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:409:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   ‘const colour4’ is not derived from ‘const std::complex<_Tp>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const typename std::valarray<_Tp>::value_type&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const typename std::valarray<_Tp>::value_type&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:48: note:   ‘const colour4’ is not derived from ‘const std::valarray<_Tp>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                ^~~~
+../lib/keyboard/../particles/fire_particle.h:51:64: error: no match for ‘operator*’ (operand types are ‘double’ and ‘const colour4’)
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                       ~~~~~~~~ ^ ~~~~~~
+      |                                                         |        |
+      |                                                         double   const colour4
+In file included from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../colour.h:26:9: note: candidate: ‘colour3 operator*(GLdouble, const colour3&)’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |         ^~~~~~~~
+../lib/keyboard/../colour.h:26:51: note:   no known conversion for argument 2 from ‘const colour4’ to ‘const colour3&’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |                                    ~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:391:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const std::complex<_Tp>&)’
+  391 |     operator*(const complex<_Tp>& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:391:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:400:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const _Tp&)’
+  400 |     operator*(const complex<_Tp>& __x, const _Tp& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:400:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:409:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const _Tp&, const std::complex<_Tp>&)’
+  409 |     operator*(const _Tp& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:409:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   ‘const colour4’ is not derived from ‘const std::complex<_Tp>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const typename std::valarray<_Tp>::value_type&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const typename std::valarray<_Tp>::value_type&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:51:66: note:   ‘const colour4’ is not derived from ‘const std::valarray<_Tp>’
+   51 |                     p.col = 2 * (0.5 - dist) * BLUE + 2 * dist * YELLOW;
+      |                                                                  ^~~~~~
+../lib/keyboard/../particles/fire_particle.h:57:32: error: no match for ‘operator*’ (operand types are ‘double’ and ‘const colour4’)
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                             ~~ ^ ~~~~~~
+      |                             |    |
+      |                             |    const colour4
+      |                             double
+In file included from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../colour.h:26:9: note: candidate: ‘colour3 operator*(GLdouble, const colour3&)’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |         ^~~~~~~~
+../lib/keyboard/../colour.h:26:51: note:   no known conversion for argument 2 from ‘const colour4’ to ‘const colour3&’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |                                    ~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:391:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const std::complex<_Tp>&)’
+  391 |     operator*(const complex<_Tp>& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:391:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:400:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const _Tp&)’
+  400 |     operator*(const complex<_Tp>& __x, const _Tp& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:400:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:409:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const _Tp&, const std::complex<_Tp>&)’
+  409 |     operator*(const _Tp& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:409:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   ‘const colour4’ is not derived from ‘const std::complex<_Tp>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const typename std::valarray<_Tp>::value_type&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const typename std::valarray<_Tp>::value_type&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:34: note:   ‘const colour4’ is not derived from ‘const std::valarray<_Tp>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                  ^~~~~~
+../lib/keyboard/../particles/fire_particle.h:57:46: error: no match for ‘operator*’ (operand types are ‘double’ and ‘const colour4’)
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                           ~~ ^ ~~~
+      |                                           |    |
+      |                                           |    const colour4
+      |                                           double
+In file included from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../colour.h:26:9: note: candidate: ‘colour3 operator*(GLdouble, const colour3&)’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |         ^~~~~~~~
+../lib/keyboard/../colour.h:26:51: note:   no known conversion for argument 2 from ‘const colour4’ to ‘const colour3&’
+   26 | colour3 operator*(GLdouble factor, const colour3 &col)
+      |                                    ~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:391:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const std::complex<_Tp>&)’
+  391 |     operator*(const complex<_Tp>& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:391:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:400:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const std::complex<_Tp>&, const _Tp&)’
+  400 |     operator*(const complex<_Tp>& __x, const _Tp& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:400:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::complex<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/ccomplex:39,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:54,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/complex:409:5: note: candidate: ‘template<class _Tp> std::complex<_Tp> std::operator*(const _Tp&, const std::complex<_Tp>&)’
+  409 |     operator*(const _Tp& __x, const complex<_Tp>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/complex:409:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   ‘const colour4’ is not derived from ‘const std::complex<_Tp>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/c++/9/valarray:603,
+                 from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/bits/valarray_after.h:407:5: note: candidate: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__multiplies, typename _Dom1::value_type>::result_type> std::operator*(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+  407 |     _DEFINE_EXPR_BINARY_OPERATOR(*, __multiplies)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/valarray_after.h:407:5: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   ‘const colour4’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const std::valarray<_Tp>&, const typename std::valarray<_Tp>::value_type&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   mismatched types ‘const std::valarray<_Tp>’ and ‘double’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h:95,
+                 from ../lib/keyboard/../colour.h:11,
+                 from ../lib/keyboard/../cg-lib.h:9,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+/usr/include/c++/9/valarray:1187:1: note: candidate: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__multiplies, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__multiplies, _Tp>::result_type> std::operator*(const typename std::valarray<_Tp>::value_type&, const std::valarray<_Tp>&)’
+ 1187 | _DEFINE_BINARY_OPERATOR(*, __multiplies)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/9/valarray:1187:1: note:   template argument deduction/substitution failed:
+In file included from ../lib/keyboard/../cg-lib.h:23,
+                 from ../lib/keyboard/keyboard.h:9,
+                 from keyboard.cpp:19:
+../lib/keyboard/../particles/fire_particle.h:57:48: note:   ‘const colour4’ is not derived from ‘const std::valarray<_Tp>’
+   57 |                     p.col = p1 * YELLOW + p2 * RED;
+      |                                                ^~~
+../lib/keyboard/../particles/fire_particle.h:39:22: warning: unused variable ‘delta_y’ [-Wunused-variable]
+   39 |                 auto delta_y = p.y - origin.y;
+      |                      ^~~~~~~
+keyboard.cpp: In function ‘void drawMosaics()’:
+keyboard.cpp:115:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Skull>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  115 |     for (int i = 0; i < skulls.size(); i++)
+      |                     ~~^~~~~~~~~~~~~~~
+keyboard.cpp: In function ‘void generateMosaic(int, double)’:
+keyboard.cpp:125:62: warning: unused variable ‘minX’ [-Wunused-variable]
+  125 |     GLdouble minZ = -radius_field, maxZ = 20 + radius_field, minX = -2 - radius_field, maxX = radius_field;
+      |                                                              ^~~~
+keyboard.cpp:125:88: warning: unused variable ‘maxX’ [-Wunused-variable]
+  125 |     GLdouble minZ = -radius_field, maxZ = 20 + radius_field, minX = -2 - radius_field, maxX = radius_field;
+      |                                                                                        ^~~~
+keyboard.cpp: In function ‘void keyboard(unsigned char, int, int)’:
+keyboard.cpp:277:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Wall>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  277 |         for (int i = 0; i < k.walls.size(); i++)
+      |                         ~~^~~~~~~~~~~~~~~~
+keyboard.cpp: In function ‘void writeStringOnScreen(std::string)’:
+keyboard.cpp:407:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  407 |     for (int i = 0; i < string.length(); i++)
+      |                     ~~^~~~~~~~~~~~~~~~~
+keyboard.cpp: In function ‘void animate_keyboard(int)’:
+keyboard.cpp:420:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Skull>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  420 |         for (int i = 0; i < skulls.size(); i++)
+      |                         ~~^~~~~~~~~~~~~~~
+keyboard.cpp:431:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Wall>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  431 |                 for (int i = 0; i < k.walls.size(); i++)
+      |                                 ~~^~~~~~~~~~~~~~~~
+keyboard.cpp:449:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Wall>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  449 |             for (int i = 0; i < k.walls.size(); i++)
+      |                             ~~^~~~~~~~~~~~~~~~
+keyboard.cpp:458:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Key>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  458 |     for (int i = 0; i < k.keys.size(); i++)
+      |                     ~~^~~~~~~~~~~~~~~
+In file included from ../lib/textures/texture.cpp:1:
+../lib/textures/textures.h: In constructor ‘Texture::Texture(int, std::string, int, int, int)’:
+../lib/textures/textures.h:18:12: warning: ‘Texture::nameOfFile’ will be initialized after [-Wreorder]
+   18 |     string nameOfFile;
+      |            ^~~~~~~~~~
+../lib/textures/textures.h:17:9: warning:   ‘int Texture::blend’ [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |         ^~~~~
+../lib/textures/textures.h:19:5: warning:   when initialized here [-Wreorder]
+   19 |     Texture(int pos, string nameOfFile, int blend, int repeat, int linear) : pos(pos), nameOfFile(nameOfFile), blend(blend), linear(linear), repeat(repeat)
+      |     ^~~~~~~
+../lib/textures/textures.h:17:24: warning: ‘Texture::linear’ will be initialized after [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |                        ^~~~~~
+../lib/textures/textures.h:17:16: warning:   ‘int Texture::repeat’ [-Wreorder]
+   17 |     int blend, repeat, linear;
+      |                ^~~~~~
+../lib/textures/textures.h:19:5: warning:   when initialized here [-Wreorder]
+   19 |     Texture(int pos, string nameOfFile, int blend, int repeat, int linear) : pos(pos), nameOfFile(nameOfFile), blend(blend), linear(linear), repeat(repeat)
+      |     ^~~~~~~
+../lib/textures/texture.cpp: In function ‘void initTextures()’:
+../lib/textures/texture.cpp:16:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Texture>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   16 |     for (i = 0; i < textures.size(); i++)
+      |                 ~~^~~~~~~~~~~~~~~~~
